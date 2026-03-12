@@ -37,17 +37,48 @@ export function Projects() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+    <section id="projects" className="relative py-24 bg-black overflow-hidden">
+      {/* Futuristic wireframe background */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: `
+          linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px'
+      }} />
+      
+      {/* Animated glow orbs */}
+      <motion.div
+        className="absolute top-1/4 right-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 3 + 1,
+              height: Math.random() * 3 + 1,
+              background: i % 2 === 0 ? 'rgba(6, 182, 212, 0.5)' : 'rgba(236, 72, 153, 0.5)',
+              boxShadow: i % 2 === 0 
+                ? '0 0 15px rgba(6, 182, 212, 0.6)' 
+                : '0 0 15px rgba(236, 72, 153, 0.6)',
+            }}
             animate={{
               y: [0, -150, 0],
               x: [0, Math.random() * 100 - 50, 0],
-              opacity: [0.2, 0.5, 0.2],
+              opacity: [0, 1, 0],
             }}
             transition={{
               duration: 5 + Math.random() * 5,
@@ -63,17 +94,17 @@ export function Projects() {
         ))}
       </div>
 
-      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Featured Projects
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Featured <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Transforming visions into reality with precision and excellence
           </p>
         </motion.div>
@@ -82,19 +113,19 @@ export function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 100, rotateY: -15 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
+              initial={{ opacity: 0, y: 100 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: index * 0.15 }}
               whileHover={{ 
                 y: -15,
                 scale: 1.02,
-                rotateY: 3,
-                rotateX: 3
               }}
               className="group relative"
-              style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
             >
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+              {/* Glow effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition duration-500" />
+              
+              <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden">
                 {/* Image with overlay */}
                 <div className="relative h-80 overflow-hidden">
                   <motion.img
@@ -104,7 +135,7 @@ export function Projects() {
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                   
                   {/* Floating category badge */}
                   <motion.div
@@ -117,15 +148,15 @@ export function Projects() {
                       ease: "easeInOut",
                       delay: index * 0.3
                     }}
-                    className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-slate-900"
+                    className="absolute top-4 right-4 bg-gradient-to-r from-cyan-500 to-purple-500 px-4 py-2 rounded-full text-sm font-semibold text-white border border-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
                   >
                     {project.category}
                   </motion.div>
 
                   {/* Content overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-white/90 mb-4">{project.description}</p>
+                    <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">{project.title}</h3>
+                    <p className="text-gray-300 mb-4">{project.description}</p>
                     
                     <div className="flex gap-4 flex-wrap">
                       {project.stats.map((stat, i) => (
@@ -134,7 +165,7 @@ export function Projects() {
                           initial={{ opacity: 0, x: -20 }}
                           animate={isInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ delay: index * 0.15 + i * 0.1 }}
-                          className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-lg text-sm"
+                          className="bg-white/10 backdrop-blur-md border border-cyan-400/30 px-3 py-1 rounded-lg text-sm shadow-[0_0_10px_rgba(6,182,212,0.2)]"
                         >
                           {stat}
                         </motion.div>
@@ -145,8 +176,12 @@ export function Projects() {
 
                 {/* Hover effect border */}
                 <motion.div
-                  className="absolute inset-0 border-4 border-transparent group-hover:border-blue-500/50 rounded-2xl transition-colors duration-300 pointer-events-none"
+                  className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-2xl transition-colors duration-300 pointer-events-none"
                 />
+                
+                {/* Corner accents */}
+                <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-purple-400/40 rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-cyan-400/40 rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </motion.div>
           ))}

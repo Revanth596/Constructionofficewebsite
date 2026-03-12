@@ -1,13 +1,28 @@
 import { motion } from 'motion/react';
 
 export function Building3D() {
-  const floors = 8;
-
   return (
-    <div className="relative w-full max-w-md mx-auto" style={{ perspective: '1200px' }}>
+    <div className="relative w-full max-w-md h-96">
+      {/* Holographic glow effect */}
       <motion.div
-        className="relative"
-        style={{ transformStyle: 'preserve-3d' }}
+        className="absolute inset-0 rounded-3xl opacity-50 blur-3xl"
+        animate={{
+          background: [
+            'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(236,72,153,0.4) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)',
+          ]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+      
+      <motion.div
+        className="relative w-full h-full"
         animate={{
           rotateY: [0, 360],
         }}
@@ -15,6 +30,10 @@ export function Building3D() {
           duration: 20,
           repeat: Infinity,
           ease: "linear"
+        }}
+        style={{
+          transformStyle: 'preserve-3d',
+          perspective: '1000px'
         }}
       >
         {/* Building Base */}
@@ -37,7 +56,7 @@ export function Building3D() {
             >
               {/* Windows - Building up animation */}
               <div className="grid grid-cols-4 gap-2 p-4 h-full">
-                {[...Array(floors * 4)].map((_, i) => (
+                {[...Array(8 * 4)].map((_, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, scaleY: 0 }}
@@ -73,7 +92,7 @@ export function Building3D() {
               }}
             >
               <div className="grid grid-cols-2 gap-2 p-4 h-full">
-                {[...Array(floors * 2)].map((_, i) => (
+                {[...Array(8 * 2)].map((_, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, scaleY: 0 }}
@@ -101,7 +120,7 @@ export function Building3D() {
               }}
             >
               <div className="grid grid-cols-2 gap-2 p-4 h-full">
-                {[...Array(floors * 2)].map((_, i) => (
+                {[...Array(8 * 2)].map((_, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, scaleY: 0 }}

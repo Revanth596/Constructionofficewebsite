@@ -1,124 +1,126 @@
-import { motion, useInView } from 'motion/react';
-import { Box, Layers, Home, Calculator, Palette } from 'lucide-react';
-import { useRef } from 'react';
+import { motion } from 'motion/react';
+import { Building, Ruler, Home, PenTool, DollarSign, Sparkles } from 'lucide-react';
 
 const services = [
   {
-    icon: Layers,
+    icon: Building,
+    title: 'House Construction',
+    description: 'Complete construction solutions from foundation to finish with quality craftsmanship and attention to detail.',
+    color: 'from-cyan-500 to-blue-600'
+  },
+  {
+    icon: Ruler,
     title: '2D & 3D Plans',
-    description: 'Detailed architectural plans with photorealistic 3D visualizations to bring your vision to life',
-    color: 'from-blue-500 to-cyan-400',
-    image: 'https://images.unsplash.com/photo-1742415106160-594d07f6cc23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50JTIwcGxhbnN8ZW58MXx8fHwxNzczMzAxNjc0fDA&ixlib=rb-4.1.0&q=80&w=1080'
-  },
-  {
-    icon: Box,
-    title: 'Structural Plans',
-    description: 'Engineering-grade structural designs ensuring safety, stability, and compliance with all regulations',
-    color: 'from-purple-500 to-pink-400',
-    image: 'https://images.unsplash.com/photo-1764717360313-587a1805fe7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJ1Y3R1cmFsJTIwZW5naW5lZXJpbmclMjBjb25zdHJ1Y3Rpb258ZW58MXx8fHwxNzczMzAxNjc0fDA&ixlib=rb-4.1.0&q=80&w=1080'
-  },
-  {
-    icon: Palette,
-    title: 'Interior Design',
-    description: 'Complete interior solutions from concept to execution with modern, functional, and beautiful spaces',
-    color: 'from-amber-500 to-orange-400',
-    image: 'https://images.unsplash.com/photo-1649663724528-3bd2ce98b6e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob21lJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MXx8fHwxNzczMjUyMzY1fDA&ixlib=rb-4.1.0&q=80&w=1080'
+    description: 'Detailed architectural plans and realistic 3D visualizations to bring your vision to life before construction begins.',
+    color: 'from-purple-500 to-pink-600'
   },
   {
     icon: Home,
-    title: 'House Construction',
-    description: 'Full-service construction from foundation to finishing, delivering quality homes on time and budget',
-    color: 'from-green-500 to-emerald-400',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMGV4dGVyaW9yfGVufDF8fHx8MTc3MzIyMjQ3NXww&ixlib=rb-4.1.0&q=80&w=1080'
+    title: 'Structural Plans',
+    description: 'Engineering excellence with comprehensive structural designs ensuring safety, durability, and code compliance.',
+    color: 'from-blue-500 to-cyan-600'
   },
   {
-    icon: Calculator,
+    icon: PenTool,
+    title: 'Interior Design',
+    description: 'Transform spaces with creative interior solutions that blend aesthetics with functionality and comfort.',
+    color: 'from-pink-500 to-purple-600'
+  },
+  {
+    icon: DollarSign,
     title: 'Cost Estimation',
-    description: 'Accurate and transparent cost estimates helping you plan and budget your construction project effectively',
-    color: 'from-red-500 to-rose-400',
-    image: 'https://images.unsplash.com/photo-1762049297262-4eef6d6d4d7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzMzMDE2NzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  }
+    description: 'Accurate project cost analysis and budgeting to help you plan financially and avoid unexpected expenses.',
+    color: 'from-cyan-500 to-purple-600'
+  },
 ];
 
 export function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
   return (
-    <section id="services" className="py-20 px-4 bg-white relative overflow-hidden">
-      {/* Floating background shapes */}
+    <section id="services" className="relative py-24 bg-black overflow-hidden">
+      {/* Futuristic Grid Background */}
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: `
+          linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
+        `,
+        backgroundSize: '40px 40px'
+      }} />
+      
+      {/* Animated glow orbs */}
       <motion.div
+        className="absolute top-20 left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
         animate={{
-          rotate: 360,
-          scale: [1, 1.2, 1]
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3]
         }}
         transition={{
-          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-          scale: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
-        className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-30 blur-3xl"
       />
       <motion.div
+        className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
         animate={{
-          rotate: -360,
-          scale: [1, 1.3, 1]
+          scale: [1.2, 1, 1.2],
+          opacity: [0.3, 0.5, 0.3]
         }}
         transition={{
-          rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-          scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
-        className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-30 blur-3xl"
       />
 
-      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
+      <div className="relative container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Our Services
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="inline-block mb-4"
+          >
+            <Sparkles className="w-12 h-12 text-cyan-400" />
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Our <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Premium Services</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Comprehensive construction solutions tailored to your needs
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Cutting-edge solutions powered by innovation and expertise
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 100 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -20,
-                  rotateY: 5,
-                  rotateX: 5,
-                  scale: 1.02
-                }}
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 className="group relative"
-                style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
               >
-                <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200 hover:shadow-2xl transition-all duration-300">
-                  {/* Image */}
-                  <div className="h-48 overflow-hidden">
-                    <motion.img
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Floating icon */}
+                {/* Glow effect */}
+                <div className={`absolute -inset-0.5 bg-gradient-to-r ${service.color} rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500`} />
+                
+                {/* Card */}
+                <div className="relative h-full bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-8 overflow-hidden">
+                  {/* Animated corner accents */}
+                  <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-cyan-400/50 rounded-tl-2xl" />
+                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-purple-400/50 rounded-br-2xl" />
+                  
+                  {/* Icon */}
                   <motion.div
                     animate={{
-                      y: [0, -10, 0]
+                      y: [0, -10, 0],
                     }}
                     transition={{
                       duration: 3,
@@ -126,30 +128,28 @@ export function Services() {
                       ease: "easeInOut",
                       delay: index * 0.2
                     }}
-                    className={`absolute top-36 left-6 bg-gradient-to-br ${service.color} p-4 rounded-xl shadow-lg z-10`}
+                    className="relative mb-6"
                   >
-                    <Icon className="w-8 h-8 text-white" />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${service.color} rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity`} />
+                    <div className={`relative bg-gradient-to-r ${service.color} p-4 rounded-2xl inline-block border border-white/20`}>
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
                   </motion.div>
 
-                  {/* Content */}
-                  <div className="p-6 pt-12">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      {service.description}
-                    </p>
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {service.description}
+                  </p>
 
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      className="mt-4 text-blue-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all"
-                    >
-                      Learn More
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </motion.button>
-                  </div>
+                  {/* Hover effect line */}
+                  <motion.div
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color}`}
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </div>
               </motion.div>
             );
